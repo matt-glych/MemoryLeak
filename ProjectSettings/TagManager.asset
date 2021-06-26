@@ -8,6 +8,7 @@ TagManager:
   - Page
   - Suitcase
   - PlayerExit
+  - Water
   layers:
   - Default
   - TransparentFX

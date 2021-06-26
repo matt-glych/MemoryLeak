@@ -109,7 +109,7 @@ public class LevelController : MonoBehaviour
                 pos = GameObject.Find("Player").transform.position + -GameObject.Find("Player").transform.forward * 2;
             }
             
-            pos.y += 1;
+            pos.y += 0.25f;
             Quaternion rotation = Quaternion.Euler(90, 90, 90);
             GameObject page = Instantiate(Page, pos, rotation);
             page.SetActive(true);

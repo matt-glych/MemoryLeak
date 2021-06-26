@@ -146,6 +146,13 @@ public class PlayerController : StarterAssets.ThirdPersonController
 
     private void OnTriggerEnter(Collider other)
     {
+        // hit water
+        if (other.gameObject.GetComponent<Water>() != null)
+        {
+            Debug.Log("HIT WATER");
+            Respawn();
+        }
+
         // hit suitcase
         if (other.gameObject.GetComponent<Suitcase>()!= null)
         {
@@ -161,7 +168,7 @@ public class PlayerController : StarterAssets.ThirdPersonController
         {
             GameController.gameController.levelController.OnLevelComplete();
         }
-
+        
 
         if (other.gameObject.GetComponent<EnemyAi>() != null)
         {
