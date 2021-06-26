@@ -20,7 +20,7 @@ public class Keycard : MonoBehaviour
                 gfx.material.color = Color.green;
                 break;
             case CardColor.Blue:
-                gfx.material.color = Color.cyan;
+                gfx.material.color = Color.blue;
                 break;
         }
     }

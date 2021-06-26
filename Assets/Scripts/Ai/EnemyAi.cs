@@ -47,6 +47,10 @@ public class EnemyAi : MonoBehaviour
     private float chaseTimer;
 
     public bool canBouncePlayer;
+    public bool bouncingPlayer;
+
+    public bool heardFootstep;
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +92,7 @@ public class EnemyAi : MonoBehaviour
         switch (currentState)
         {
             case State.Idle:
+                maxSpeed = walkSpeed;
                 HearFootsteps();
                 Idle();
                 break;
@@ -110,6 +115,7 @@ public class EnemyAi : MonoBehaviour
                 Chase();
                 break;
             case State.Escort:
+                maxSpeed = runSpeed;
                 Escort();
                 break;
         }
@@ -120,22 +126,32 @@ public class EnemyAi : MonoBehaviour
     // hear nearvy footsteps
     public void HearFootsteps()
     {
-        Transform player = GameObject.Find("Player").transform;
-
-        // detect close running sound
-        if (Vector3.Distance(GameObject.Find("Player").transform.position, transform.position) < sightRange / 2)
+        if(!GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted && !bouncingPlayer && !heardFootstep)
         {
-            if (target.GetComponent<CharacterController>().velocity.magnitude > 2.5f)
-            {
-                Debug.Log("TARGET HEARD FROM BEHIND!");
+            Transform player = GameObject.Find("Player").transform;
 
-                NavMeshHit myNavHit;
-                if (NavMesh.SamplePosition(player.transform.position, out myNavHit, 1, -1))
+            // detect close running sound
+            if (Vector3.Distance(GameObject.Find("Player").transform.position, transform.position) < sightRange / 2)
+            {
+                if (target.GetComponent<CharacterController>().velocity.magnitude > 2.5f)
                 {
-                    PatrolPoints.Insert(1, myNavHit.position);
+                    Debug.Log("TARGET HEARD FROM BEHIND!");
+
+                    NavMeshHit myNavHit;
+                    if (NavMesh.SamplePosition(player.transform.position, out myNavHit, 1, -1))
+                    {
+                        Invoke(nameof(AllowHearFootsteps), 2f);
+                        heardFootstep = true;
+                        PatrolPoints.Insert(PatrolPoints.Count-1, myNavHit.position);
+                    }
                 }
             }
         }
+    }
+
+    public void AllowHearFootsteps()
+    {
+        heardFootstep = false;
     }
  
     // Idle; state behaviour
@@ -179,6 +195,10 @@ public class EnemyAi : MonoBehaviour
     // Chase; state behaviour
     public void Chase()
     {
+        if(GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted && !bouncingPlayer)
+        {
+            currentState = State.Patrol;
+        }
         // chase target
         Vector3 targetPoint = target.transform.position;
         nav.SetDestination(targetPoint);
@@ -200,6 +220,11 @@ public class EnemyAi : MonoBehaviour
     // Escort; state behaviour
     public void Escort()
     {
+        if(GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted  && !bouncingPlayer)
+        {
+            currentState = State.Patrol;
+
+        }
         // escort target
         Vector3 targetPoint = GameController.gameController.levelController.ExitPoints[0].transform.position;
         nav.SetDestination(targetPoint);
@@ -233,9 +258,12 @@ public class EnemyAi : MonoBehaviour
     // called when target is spotted
     public void SpotTarget(GameObject target)
     {
-        if (behaviours.InSight(target.gameObject) && behaviours.InFOV(target.gameObject))
+        if(!GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted && !bouncingPlayer)
         {
-            currentState = State.Investigate;
+            if (behaviours.InSight(target.gameObject) && behaviours.InFOV(target.gameObject))
+            {
+                currentState = State.Investigate;
+            }
         }
     }
 
@@ -268,9 +296,15 @@ public class EnemyAi : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            Debug.Log("player hit");
-            if(canBouncePlayer)
-                currentState = State.Escort;
+            if(!GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted && !bouncingPlayer)
+            {
+                Debug.Log("player hit");
+                if (canBouncePlayer)
+                {
+                    bouncingPlayer = true;
+                    currentState = State.Escort;
+                }
+            }
         }
     }
 }

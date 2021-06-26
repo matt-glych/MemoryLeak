@@ -270,7 +270,7 @@ GameObject:
   m_Layer: 8
   m_Name: 1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -335,7 +335,7 @@ GameObject:
   m_Layer: 8
   m_Name: 6
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -856,12 +856,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1068910053}
     m_Modifications:
     - target: {fileID: 5701752948805032691, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 5701752948805032691, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
       propertyPath: m_Name
       value: Water (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5701752948805032694, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5701752948805032694, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1220,8 +1224,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665897363}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7, y: 8.465582, z: 8.42}
-  m_LocalScale: {x: 18.673023, y: 3.0936, z: 1}
+  m_LocalPosition: {x: 2.46, y: 8.465582, z: 8.42}
+  m_LocalScale: {x: 20.090305, y: 3.0936, z: 1}
   m_Children: []
   m_Father: {fileID: 1849177283}
   m_RootOrder: 4
@@ -1989,7 +1993,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805823959}
-  m_LocalRotation: {x: 0.15663536, y: -0.000000011004395, z: 0.000000012397865, w: 0.98765653}
+  m_LocalRotation: {x: 0.15663536, y: -0.0000000110044, z: 0.0000000123978685, w: 0.98765653}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2009,20 +2013,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236950, guid: 254615324d717ec4890d7047183434b6, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4672655281601236950, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_Name
       value: Door (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236951, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236951, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.583721
+      value: 3.0661426
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236951, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.209894
+      value: 14.02
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236951, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2169,7 +2177,7 @@ GameObject:
   m_Layer: 8
   m_Name: 2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2762,11 +2770,11 @@ Transform:
   - {fileID: 2091825962}
   - {fileID: 631383321}
   - {fileID: 1625553176}
+  - {fileID: 136008742}
   - {fileID: 499229964}
   - {fileID: 799034195}
   - {fileID: 10525389}
   - {fileID: 78621391}
-  - {fileID: 136008742}
   m_Father: {fileID: 1849177283}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3097,7 +3105,7 @@ GameObject:
   m_Layer: 8
   m_Name: 4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3194,7 +3202,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119348914}
-  m_LocalRotation: {x: 0.48037094, y: -3.961606e-16, z: 7.2331346e-16, w: 0.8770654}
+  m_LocalRotation: {x: 0.48037094, y: 0, z: 0, w: 0.8770654}
   m_LocalPosition: {x: 1.77, y: 16.3, z: -23.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3389,7 +3397,7 @@ GameObject:
   m_Layer: 8
   m_Name: 5
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3509,6 +3517,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1068910053}
     m_Modifications:
+    - target: {fileID: 5701752948805032691, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5701752948805032691, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
       propertyPath: m_Name
       value: Water (1)
@@ -5546,7 +5558,7 @@ GameObject:
   m_Layer: 8
   m_Name: 3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6219,7 +6231,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2947443512972913187, guid: 9ca3f69fad0cb784abef3ce4e57f6c50, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2947443512972913187, guid: 9ca3f69fad0cb784abef3ce4e57f6c50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6276,7 +6288,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4140263370369829826, guid: 18e6a3325fb812641a4d55a378647525, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4140263370369829826, guid: 18e6a3325fb812641a4d55a378647525, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6332,12 +6344,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1068910053}
     m_Modifications:
     - target: {fileID: 4672655281601236950, guid: 254615324d717ec4890d7047183434b6, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4672655281601236950, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236951, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4672655281601236951, guid: 254615324d717ec4890d7047183434b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -6392,6 +6408,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1068910053}
     m_Modifications:
+    - target: {fileID: 5701752948805032691, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5701752948805032691, guid: 34ba04cd0d92cb5439c3cdcbf951b706, type: 3}
       propertyPath: m_Name
       value: Water

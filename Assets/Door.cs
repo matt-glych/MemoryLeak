@@ -25,7 +25,7 @@ public class Door : MonoBehaviour
                 gfx.material.color = Color.green;
                 break;
             case DoorColor.Blue:
-                gfx.material.color = Color.cyan;
+                gfx.material.color = Color.blue;
                 break;
         }
     }
