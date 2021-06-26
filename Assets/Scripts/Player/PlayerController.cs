@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : StarterAssets.ThirdPersonController
 {
+    public string keycard;
+    
     public float interactTimer;
     public float interactTime;
 
@@ -71,6 +73,7 @@ public class PlayerController : StarterAssets.ThirdPersonController
     {
         base.Start();
         canMove = true;
+        keycard = "0";
     }
 
     public override string ToString()
@@ -136,7 +139,42 @@ public class PlayerController : StarterAssets.ThirdPersonController
         }
     }
 
+    public void CollectCard(Collider card)
+    {
+        Debug.Log("HIT CARD");
+        if (keycard == "0")
+        {
+            if (card.gameObject.GetComponent<Keycard>().colour == Keycard.CardColor.Red)
+                keycard = "red";
 
+            if (card.gameObject.GetComponent<Keycard>().colour == Keycard.CardColor.Blue)
+                keycard = "blue";
+            Destroy(card.gameObject);
+        }
+
+        else if (keycard == "red")
+        {
+
+            if (card.gameObject.GetComponent<Keycard>().colour == Keycard.CardColor.Blue)
+            {
+                keycard = "blue";
+                GameController.gameController.levelController.DropCard("red");
+                Destroy(card.gameObject);
+            }
+        }
+
+        else if (keycard == "blue")
+        {
+            if (card.gameObject.GetComponent<Keycard>().colour == Keycard.CardColor.Red)
+            {
+                keycard = "red";
+                GameController.gameController.levelController.DropCard("blue");
+                Destroy(card.gameObject);
+            }    
+        }
+
+        GameObject.Find("UI").GetComponent<UIController>().SetCardIcon(keycard);
+    }
 
     public void Respawn()
     {
@@ -146,6 +184,33 @@ public class PlayerController : StarterAssets.ThirdPersonController
 
     private void OnTriggerEnter(Collider other)
     {
+        // hit card
+        if (other.gameObject.GetComponent<Keycard>() != null)
+        {
+            CollectCard(other);
+
+        }
+
+        // hit door
+        if (other.gameObject.GetComponent<Door>() != null)
+        {
+            Debug.Log("HIT DOOR");
+            if(!other.GetComponent<Door>().isOpen)
+            {
+                if(other.GetComponent<Door>().colour == Door.DoorColor.Red)
+                {
+                    if(keycard == "red")
+                        other.GetComponent<Door>().Open();
+                }
+
+                if (other.GetComponent<Door>().colour == Door.DoorColor.Blue)
+                {
+                    if (keycard == "blue")
+                        other.GetComponent<Door>().Open();
+                }
+            }
+                
+        }
         // hit water
         if (other.gameObject.GetComponent<Water>() != null)
         {

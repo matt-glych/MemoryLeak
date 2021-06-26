@@ -9,6 +9,8 @@ public class LevelController : MonoBehaviour
     //public GameObject[] Pages;
     public GameObject Suitcase;
     public GameObject Page;
+    public GameObject CardRed;
+    public GameObject CardBlue;
 
     public Transform[] ExitPoints;
 
@@ -114,6 +116,24 @@ public class LevelController : MonoBehaviour
             GameObject page = Instantiate(Page, pos, rotation);
             page.SetActive(true);
             //Page.transform.position = GameController.gameController.Player.transform.position;
+        }
+    }
+
+    public void DropCard(string colour)
+    {
+        Vector3 pos = Vector3.zero;
+        pos = GameObject.Find("Player").transform.position + -GameObject.Find("Player").transform.forward * 2;
+        pos.y += 0.5f;
+        Quaternion rotation = Quaternion.Euler(90, 0, 0);
+
+        switch (colour)
+        {
+            case "red":
+                Instantiate(CardRed, pos, Quaternion.identity);
+                break;
+            case "blue":
+                Instantiate(CardBlue, pos, Quaternion.identity);
+                break;
         }
     }
 }

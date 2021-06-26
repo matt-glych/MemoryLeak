@@ -10,11 +10,15 @@ public class UIController : MonoBehaviour
     public GameObject EndScreen;
     public Text EndScreenResult;
 
+    public Image CardRed;
+    public Image CardBlue;
 
+     
     // Start is called before the first frame update
     void Start()
     {
         SetPageIcon(false);
+        SetCardIcon("0");
     }
 
     // Update is called once per frame
@@ -35,6 +39,26 @@ public class UIController : MonoBehaviour
     }
     
 
+    public void SetCardIcon(string type)
+    {
+        switch(type)
+        {
+            case "red":
+                CardRed.gameObject.SetActive(true);
+                CardBlue.gameObject.SetActive(false);
+                break;
+
+            case "blue":
+                CardRed.gameObject.SetActive(false);
+                CardBlue.gameObject.SetActive(true);
+                break;
+
+            case "0":
+                CardRed.gameObject.SetActive(false);
+                CardBlue.gameObject.SetActive(false);
+                break;
+        }
+    }
 
     public void SetPageIcon(bool collected)
     {
