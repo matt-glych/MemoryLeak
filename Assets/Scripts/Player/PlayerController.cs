@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class PlayerController : StarterAssets.ThirdPersonController
 {
@@ -117,6 +118,13 @@ public class PlayerController : StarterAssets.ThirdPersonController
 
     public void StopEscort()
     {
+        Vector3 pos = bouncerAgent.position - bouncerAgent.forward * 1.25f;
+
+        NavMeshHit myNavHit;
+        if (NavMesh.SamplePosition(pos, out myNavHit, 100, -1))
+        {
+            transform.position = myNavHit.position;
+        }
         transform.position = bouncerAgent.position - bouncerAgent.forward * 1.25f;
         GetComponent<Collider>().enabled = true;
         GetComponent<CharacterController>().enabled = true;

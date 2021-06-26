@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LevelController : MonoBehaviour
 {
@@ -112,6 +113,13 @@ public class LevelController : MonoBehaviour
             }
             
             pos.y += 0.25f;
+
+            NavMeshHit myNavHit;
+            if (NavMesh.SamplePosition(pos, out myNavHit, 1, -1))
+            {
+                pos = myNavHit.position;
+            }
+
             Quaternion rotation = Quaternion.Euler(90, 90, 90);
             GameObject page = Instantiate(Page, pos, rotation);
             page.SetActive(true);
@@ -125,6 +133,12 @@ public class LevelController : MonoBehaviour
         pos = GameObject.Find("Player").transform.position + -GameObject.Find("Player").transform.forward * 2;
         pos.y += 0.5f;
         Quaternion rotation = Quaternion.Euler(90, 0, 0);
+
+        NavMeshHit myNavHit;
+        if (NavMesh.SamplePosition(pos, out myNavHit, 1, -1))
+        {
+            pos = myNavHit.position;
+        }
 
         switch (colour)
         {

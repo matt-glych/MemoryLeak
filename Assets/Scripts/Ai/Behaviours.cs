@@ -310,7 +310,7 @@ public class Behaviours
         // detect close running sound
         if (Vector3.Distance(target.transform.position, owner.transform.position) < owner.sightRange / 2)
         {
-            if (target.GetComponent<CharacterController>().velocity.magnitude > 4f)
+            if (target.GetComponent<CharacterController>().velocity.magnitude > 2.5f)
             {
                 Debug.Log("TARGET HEARD FROM BEHIND!");
                 //owner.TargetSpotted(target);

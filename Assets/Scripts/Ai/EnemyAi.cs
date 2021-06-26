@@ -53,6 +53,7 @@ public class EnemyAi : MonoBehaviour
     {
        // set components
         nav = GetComponent<NavMeshAgent>();
+        nav.angularSpeed = 1000;
         behaviours = new Behaviours(this);
         //nav.updateRotation = false;
        
@@ -67,7 +68,10 @@ public class EnemyAi : MonoBehaviour
         currentState = State.Patrol;
         alive = true;
         canBouncePlayer = true;
+
+        
     }
+
 
     // Update is called once per frame
     void Update()
@@ -84,28 +88,55 @@ public class EnemyAi : MonoBehaviour
         switch (currentState)
         {
             case State.Idle:
+                HearFootsteps();
                 Idle();
                 break;
 
             case State.Patrol:
+                maxSpeed = walkSpeed;
+                HearFootsteps();
                 SpotTarget(target.gameObject);
                 Patrol();
                 break;
 
             case State.Investigate:
+                HearFootsteps();
                 SpotTarget(target.gameObject);
                 Investigate();
                 break;
 
             case State.Chase:
+                maxSpeed = runSpeed;
                 Chase();
                 break;
             case State.Escort:
                 Escort();
                 break;
         }
+
+        nav.speed = maxSpeed;
     }
 
+    // hear nearvy footsteps
+    public void HearFootsteps()
+    {
+        Transform player = GameObject.Find("Player").transform;
+
+        // detect close running sound
+        if (Vector3.Distance(GameObject.Find("Player").transform.position, transform.position) < sightRange / 2)
+        {
+            if (target.GetComponent<CharacterController>().velocity.magnitude > 2.5f)
+            {
+                Debug.Log("TARGET HEARD FROM BEHIND!");
+
+                NavMeshHit myNavHit;
+                if (NavMesh.SamplePosition(player.transform.position, out myNavHit, 1, -1))
+                {
+                    PatrolPoints.Insert(1, myNavHit.position);
+                }
+            }
+        }
+    }
  
     // Idle; state behaviour
     public void Idle()
