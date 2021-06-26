@@ -51,6 +51,9 @@ public class EnemyAi : MonoBehaviour
 
     public bool heardFootstep;
 
+    private Quaternion grabRot;
+
+    public Transform Arms;
 
     // Start is called before the first frame update
     void Start()
@@ -73,7 +76,9 @@ public class EnemyAi : MonoBehaviour
         alive = true;
         canBouncePlayer = true;
 
-        
+        //grabRot = Quaternion.Euler(0, 0, -90);
+
+       
     }
 
 
@@ -225,6 +230,7 @@ public class EnemyAi : MonoBehaviour
             currentState = State.Patrol;
 
         }
+
         // escort target
         Vector3 targetPoint = GameController.gameController.levelController.ExitPoints[0].transform.position;
         nav.SetDestination(targetPoint);
@@ -244,6 +250,11 @@ public class EnemyAi : MonoBehaviour
     public void BreakEscort()
     {
         canBouncePlayer = false;
+        bouncingPlayer = false;
+
+        //Arms.Rotate(0, 0, 90);
+
+
         Invoke(nameof(EnableBouncingPlayer),1);
         GameObject.Find("Player").GetComponent<PlayerController>().StopEscort();
        
@@ -302,6 +313,9 @@ public class EnemyAi : MonoBehaviour
                 if (canBouncePlayer)
                 {
                     bouncingPlayer = true;
+
+                    //Arms.Rotate(0, 0, -90);
+
                     currentState = State.Escort;
                 }
             }

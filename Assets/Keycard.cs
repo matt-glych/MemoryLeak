@@ -13,7 +13,7 @@ public class Keycard : MonoBehaviour
     {
         switch (colour)
         {
-            case CardColor.Red:
+          /*  case CardColor.Red:
                 gfx.material.color = Color.red;
                 break;
             case CardColor.Green:
@@ -21,7 +21,7 @@ public class Keycard : MonoBehaviour
                 break;
             case CardColor.Blue:
                 gfx.material.color = Color.blue;
-                break;
+                break;*/
         }
     }
 

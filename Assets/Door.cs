@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch(colour)
+        /*switch(colour)
         {
             case DoorColor.Red:
                 gfx.material.color = Color.red;
@@ -27,7 +27,7 @@ public class Door : MonoBehaviour
             case DoorColor.Blue:
                 gfx.material.color = Color.blue;
                 break;
-        }
+        }*/
     }
 
     // Update is called once per frame
