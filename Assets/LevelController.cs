@@ -36,13 +36,16 @@ public class LevelController : MonoBehaviour
     {
         if(hasPages)
         {
-            dropTimer += Time.deltaTime;
-
-            if((dropTimer % 60) > dropTime)
+            if(GameController.gameController.Player.GetComponent<CharacterController>().velocity.magnitude >4)
             {
-                Debug.Log("DROP PAGE");
-                DropPage();
-                dropTimer = 0;
+                dropTimer += Time.deltaTime;
+
+                if ((dropTimer % 60) > dropTime)
+                {
+                    Debug.Log("DROP PAGE");
+                    DropPage();
+                    dropTimer = 0;
+                }
             }
         }
     }
