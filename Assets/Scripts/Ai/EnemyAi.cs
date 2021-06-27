@@ -138,7 +138,7 @@ public class EnemyAi : MonoBehaviour
             // detect close running sound
             if (Vector3.Distance(GameObject.Find("Player").transform.position, transform.position) < sightRange / 2)
             {
-                if (target.GetComponent<CharacterController>().velocity.magnitude > 2.5f)
+                if (target.GetComponent<CharacterController>().velocity.magnitude > 2.5f || GameObject.Find("Player").GetComponent<PlayerController>().meowing)
                 {
                     Debug.Log("TARGET HEARD FROM BEHIND!");
 
@@ -147,7 +147,9 @@ public class EnemyAi : MonoBehaviour
                     {
                         Invoke(nameof(AllowHearFootsteps), 2f);
                         heardFootstep = true;
-                        PatrolPoints.Insert(PatrolPoints.Count-1, myNavHit.position);
+                        PatrolPoints.Insert(currentPatrolPoint, myNavHit.position);
+                        currentState = State.Patrol;
+                        //PatrolPoints.Insert(PatrolPoints.Count-1, myNavHit.position);
                     }
                 }
             }
@@ -238,13 +240,21 @@ public class EnemyAi : MonoBehaviour
         GameObject.Find("Player").GetComponent<PlayerController>().OnEscort(this.transform);
 
 
-        if(behaviours.InPosition(targetPoint,0.5f))
+        if(behaviours.InPosition(targetPoint,1f))
         {
-            GameObject.Find("Player").GetComponent<PlayerController>().StopEscort();
-            GameObject.Find("Player").GetComponent<PlayerController>().Respawn();
-            currentState = State.Patrol;
+            //PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
+            GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
+            //GameObject.Find("Player").GetComponent<PlayerController>().StopEscort();
+            GameObject.Find("Player").GetComponent<PlayerController>().ThrownOut();
+            Invoke(nameof(RespawnPlayer),1f);
+            //currentState = State.Patrol;
         }
 
+    }
+
+    public void RespawnPlayer()
+    {
+        GameObject.Find("Player").GetComponent<PlayerController>().Respawn();
     }
 
     public void BreakEscort()
