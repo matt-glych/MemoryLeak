@@ -61,6 +61,8 @@ public class EnemyAi : MonoBehaviour
        // set components
         nav = GetComponent<NavMeshAgent>();
         nav.angularSpeed = 1000;
+        nav.acceleration = 15;
+        nav.autoBraking = true;
         behaviours = new Behaviours(this);
         //nav.updateRotation = false;
        
@@ -98,7 +100,7 @@ public class EnemyAi : MonoBehaviour
         {
             case State.Idle:
                 maxSpeed = walkSpeed;
-                HearFootsteps();
+                //HearFootsteps();
                 Idle();
                 break;
 
@@ -264,8 +266,8 @@ public class EnemyAi : MonoBehaviour
 
         //Arms.Rotate(0, 0, 90);
 
-
-        Invoke(nameof(EnableBouncingPlayer),1);
+        currentState = State.Idle;
+        Invoke(nameof(EnableBouncingPlayer),2.5f);
         GameObject.Find("Player").GetComponent<PlayerController>().StopEscort();
        
     }
