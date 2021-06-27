@@ -175,13 +175,14 @@ public class PlayerController : StarterAssets.ThirdPersonController
 
         if(interactPressed)
         {
-            if(beingEscorted)
+            GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
+            if (beingEscorted)
             {
                 struggleValue += 0.25f;
             }
             else
             {
-                GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
+                
             }
 
             _input.interact = false;
