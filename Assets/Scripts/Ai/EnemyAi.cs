@@ -55,6 +55,14 @@ public class EnemyAi : MonoBehaviour
 
     public Transform Arms;
 
+    private bool setAnims;
+
+    public Animator anim;
+
+
+    public Transform Shoulder_L;
+    public Transform Shoulder_R;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -172,6 +180,12 @@ public class EnemyAi : MonoBehaviour
     // Patrol; state behaviour
     public void Patrol()
     {
+        if (!setAnims)
+        {
+            //GetComponent<Animator>().SetBool("carrying", false);
+            setAnims = true;
+        }
+
         Vector3 waypoint = PatrolPoints[currentPatrolPoint];
         nav.SetDestination(waypoint);
 
@@ -198,16 +212,29 @@ public class EnemyAi : MonoBehaviour
     // Investigate; state behaviour
     public void Investigate()
     {
+        if (!setAnims)
+        {
+            //GetComponent<Animator>().SetBool("carrying", false);
+            setAnims = true;
+        }
         currentState = State.Chase;
     }
 
     // Chase; state behaviour
     public void Chase()
     {
-        if(GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted && !bouncingPlayer)
+        //Debug.Log("CHASING");
+        //anim.SetBool("carry", true);
+        if (GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted && !bouncingPlayer)
         {
             currentState = State.Patrol;
         }
+
+        /*anim.SetBool("carry", true);
+        anim.Play("Carry1");*/
+        anim.SetBool("carry", true);
+        //RaiseArms(Shoulder_L);
+
         // chase target
         Vector3 targetPoint = target.transform.position;
         nav.SetDestination(targetPoint);
@@ -254,6 +281,14 @@ public class EnemyAi : MonoBehaviour
 
     }
 
+    public void RaiseArms(Transform part)
+    {
+        Debug.Log("RAISING ARMS");
+        part.Rotate(Vector3.up * (4 * Time.deltaTime));
+
+    }
+
+
     public void RespawnPlayer()
     {
         GameObject.Find("Player").GetComponent<PlayerController>().Respawn();
@@ -261,6 +296,11 @@ public class EnemyAi : MonoBehaviour
 
     public void BreakEscort()
     {
+        if (!setAnims)
+        {
+            //GetComponent<Animator>().SetBool("carrying", false);
+            setAnims = true;
+        }
         canBouncePlayer = false;
         bouncingPlayer = false;
 
