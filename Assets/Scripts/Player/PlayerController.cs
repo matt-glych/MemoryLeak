@@ -118,7 +118,8 @@ public class PlayerController : StarterAssets.ThirdPersonController
     public void OnEscort(Transform agent)
     {
         if(!beingEscorted && canMove)
-            AudioSource.PlayClipAtPoint(soundManager.Grapple, transform.position);
+            GetComponent<AudioSource>().PlayOneShot(soundManager.Grapple);
+            //AudioSource.PlayClipAtPoint(soundManager.Grapple, transform.position);
         transform.position = agent.position + agent.forward * 1.25f;
         GetComponent<Collider>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
@@ -148,7 +149,8 @@ public class PlayerController : StarterAssets.ThirdPersonController
     {
         if(!thrownOut)
         {
-            AudioSource.PlayClipAtPoint(soundManager.GameOver, transform.position);
+            //AudioSource.PlayClipAtPoint(soundManager.GameOver, transform.position);
+            GetComponent<AudioSource>().PlayOneShot(soundManager.GameOver);
             thrownOut = true;
         }
         Vector3 pos = bouncerAgent.position - bouncerAgent.forward * 1.25f;
@@ -234,7 +236,8 @@ public class PlayerController : StarterAssets.ThirdPersonController
         // hit card
         if (other.gameObject.GetComponent<Keycard>() != null)
         {
-            AudioSource.PlayClipAtPoint(soundManager.pickupPaper, transform.position);
+            //AudioSource.PlayClipAtPoint(soundManager.pickupPaper, transform.position);
+            GetComponent<AudioSource>().PlayOneShot(soundManager.pickupPaper);
             CollectCard(other);
 
         }
@@ -250,12 +253,14 @@ public class PlayerController : StarterAssets.ThirdPersonController
                 {
                     if(keycard == "red")
                     {
-                        AudioSource.PlayClipAtPoint(soundManager.doorOpen, other.transform.position);
+                        //AudioSource.PlayClipAtPoint(soundManager.doorOpen, other.transform.position);
+                        GetComponent<AudioSource>().PlayOneShot(soundManager.doorOpen);
                         other.GetComponent<Door>().Open();
                     }
                     else
                     {
-                        AudioSource.PlayClipAtPoint(soundManager.doorLocked, other.transform.position);
+                        //AudioSource.PlayClipAtPoint(soundManager.doorLocked, other.transform.position);
+                        GetComponent<AudioSource>().PlayOneShot(soundManager.doorLocked);
                     }
                        
                 }
@@ -264,12 +269,14 @@ public class PlayerController : StarterAssets.ThirdPersonController
                 {
                     if (keycard == "blue")
                     {
-                        AudioSource.PlayClipAtPoint(soundManager.doorOpen, other.transform.position);
+                        //AudioSource.PlayClipAtPoint(soundManager.doorOpen, other.transform.position);
+                        GetComponent<AudioSource>().PlayOneShot(soundManager.doorOpen);
                         other.GetComponent<Door>().Open();
                     }
                     else
                     {
-                        AudioSource.PlayClipAtPoint(soundManager.doorLocked, other.transform.position);
+                        //AudioSource.PlayClipAtPoint(soundManager.doorLocked, other.transform.position);
+                        GetComponent<AudioSource>().PlayOneShot(soundManager.doorLocked);
                     }
                         
                 }
@@ -281,7 +288,8 @@ public class PlayerController : StarterAssets.ThirdPersonController
         {
             Debug.Log("HIT WATER");
             if(canMove)
-                AudioSource.PlayClipAtPoint(soundManager.hitWater,transform.position);
+                //AudioSource.PlayClipAtPoint(soundManager.hitWater,transform.position);
+                GetComponent<AudioSource>().PlayOneShot(soundManager.hitWater);
             canMove = false;
             Invoke(nameof(Respawn), 2f);
             //Respawn();
@@ -290,19 +298,23 @@ public class PlayerController : StarterAssets.ThirdPersonController
         // hit suitcase
         if (other.gameObject.GetComponent<Suitcase>()!= null)
         {
-            AudioSource.PlayClipAtPoint(soundManager.Meow, transform.position);
+            //AudioSource.PlayClipAtPoint(soundManager.Meow, transform.position);
+            GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
+            GameController.gameController.soundManager.SetMusic2();
             GameController.gameController.levelController.CollectItem(other.gameObject.transform);
         }
         // hit page
         if (other.gameObject.GetComponent<Page>() != null)
         {
-            AudioSource.PlayClipAtPoint(soundManager.pickupPaper, transform.position);
+            //AudioSource.PlayClipAtPoint(soundManager.pickupPaper, transform.position);
+            GetComponent<AudioSource>().PlayOneShot(soundManager.pickupPaper);
             GameController.gameController.levelController.CollectItem(other.gameObject.transform);
         }
         // hit player exit
         if (other.gameObject.tag == "PlayerExit")
         {
-            AudioSource.PlayClipAtPoint(soundManager.Meow, transform.position);
+            //AudioSource.PlayClipAtPoint(soundManager.Meow, transform.position);
+            GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
             GameController.gameController.levelController.OnLevelComplete();
         }
         

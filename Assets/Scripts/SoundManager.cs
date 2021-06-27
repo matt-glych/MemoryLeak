@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<AudioSource>().pitch = 0.75f;
     }
 
     // Update is called once per frame
@@ -36,5 +36,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip Meow
     {
         get => Meows[Random.Range(0, Meows.Length)];
+    }
+
+    public void SetMusic2()
+    {
+        //GetComponent<AudioSource>().clip = Music2;
+        GetComponent<AudioSource>().pitch = 1f;
     }
 }
