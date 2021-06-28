@@ -36,7 +36,7 @@ public class LevelController : MonoBehaviour
     {
         if(hasPages)
         {
-            if(GameController.gameController.Player.GetComponent<CharacterController>().velocity.magnitude >4)
+            if(GameController.gameController.Player.GetComponent<CharacterController>().velocity.magnitude >4 || GameController.gameController.Player.GetComponent<PlayerController>().beingEscorted)
             {
                 dropTimer += Time.deltaTime;
 
