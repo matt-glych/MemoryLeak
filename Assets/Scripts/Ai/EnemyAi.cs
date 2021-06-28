@@ -63,6 +63,7 @@ public class EnemyAi : MonoBehaviour
     public Transform Shoulder_L;
     public Transform Shoulder_R;
 
+    public Transform Bin;
     // Start is called before the first frame update
     void Start()
     {
@@ -273,16 +274,28 @@ public class EnemyAi : MonoBehaviour
         }
 
         // escort target to nearest bin
-        //Vector3 targetPoint = GameController.gameController.levelController.ExitPoints[0].transform.position;
-        Vector3 targetPoint = GameController.gameController.levelController.NearestBin(transform).position;
-        targetPoint.y = transform.position.y;
+        //Vector3 pos = GameController.gameController.levelController.ExitPoints[0].transform.position;
+        /*Vector3 pos = GameController.gameController.levelController.NearestBin(this.transform).position;
+        pos.y = 0;
+        Vector3 targetPoint = pos;*/
+        /* Vector3 targetPoint = Vector3.zero;
+         Vector3 pos = GameController.gameController.levelController.NearestBin(transform).position;
+         if (!choseBin)
+         {
+             pos = GameController.gameController.levelController.NearestBin(transform).position;
+             pos.y = 0;
 
-        nav.SetDestination(targetPoint);
+             choseBin = true;
+         }*/
+
+        
+
+        nav.SetDestination(Bin.position);
 
         GameObject.Find("Player").GetComponent<PlayerController>().OnEscort(this.transform);
 
 
-        if(behaviours.InPosition(targetPoint,1f))
+        if(behaviours.InPosition(Bin.position, 1f))
         {
             anim.SetBool("carry", false);
             //PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
