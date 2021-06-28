@@ -270,7 +270,6 @@ public class EnemyAi : MonoBehaviour
         if (GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted  && !bouncingPlayer)
         {
             currentState = State.Patrol;
-
         }
 
         // escort target to nearest bin
