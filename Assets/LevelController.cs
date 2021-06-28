@@ -63,7 +63,7 @@
 
         public Transform NearestBin(Transform agent)
         {
-            var closestExit = ExitPoints[3];
+            var closestExit = ExitPoints[0];
 
             var dist = Vector3.Distance(agent.position, closestExit.position);
 
