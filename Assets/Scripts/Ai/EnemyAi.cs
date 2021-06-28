@@ -87,8 +87,10 @@ public class EnemyAi : MonoBehaviour
         canBouncePlayer = true;
 
         //grabRot = Quaternion.Euler(0, 0, -90);
+        anim.SetBool("stunned", false);
+        anim.SetBool("chase", false);
+        anim.SetBool("walk", false);
 
-       
     }
 
 
@@ -184,7 +186,6 @@ public class EnemyAi : MonoBehaviour
     public void Idle()
     {
         anim.SetBool("chase", false);
-        anim.speed = 1;
     }
 
     // Patrol; state behaviour
@@ -193,7 +194,8 @@ public class EnemyAi : MonoBehaviour
         
         anim.SetBool("walk", true);
         anim.SetBool("chase", false);
-        anim.speed = 1;
+        anim.SetBool("stunned", false);
+        anim.SetBool("carry", false);
 
         Vector3 waypoint = PatrolPoints[currentPatrolPoint];
         nav.SetDestination(waypoint);
@@ -222,7 +224,6 @@ public class EnemyAi : MonoBehaviour
     public void Investigate()
     {
         anim.SetBool("chase", false);
-        anim.speed = 1;
 
         currentState = State.Chase;
     }
@@ -263,8 +264,8 @@ public class EnemyAi : MonoBehaviour
     // Escort; state behaviour
     public void Escort()
     {
-        anim.SetBool("chase", true);
-        anim.speed = -1;
+        anim.SetBool("chase", false);
+        anim.SetBool("carry", true);
 
         if (GameObject.Find("Player").GetComponent<PlayerController>().beingEscorted  && !bouncingPlayer)
         {
@@ -308,7 +309,7 @@ public class EnemyAi : MonoBehaviour
     public void BreakEscort()
     {
         anim.SetBool("chase", false);
-        anim.speed = 1;
+        anim.SetBool("stunned", true);
 
         canBouncePlayer = false;
         bouncingPlayer = false;
@@ -323,6 +324,7 @@ public class EnemyAi : MonoBehaviour
 
     public void EnableBouncingPlayer()
     {
+        anim.SetBool("stunned", false);
         currentState = State.Patrol;
         canBouncePlayer = true;
     }
