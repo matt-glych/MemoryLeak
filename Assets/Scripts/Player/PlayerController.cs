@@ -175,13 +175,14 @@ public class PlayerController : StarterAssets.ThirdPersonController
 
         if(interactPressed)
         {
-            if(beingEscorted)
+            GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
+            if (beingEscorted)
             {
                 struggleValue += 0.25f;
             }
             else
             {
-                GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
+                
             }
 
             _input.interact = false;
@@ -287,6 +288,7 @@ public class PlayerController : StarterAssets.ThirdPersonController
         if (other.gameObject.GetComponent<Water>() != null)
         {
             Debug.Log("HIT WATER");
+            GameController.gameController.gameOver = true;
             if(canMove)
                 //AudioSource.PlayClipAtPoint(soundManager.hitWater,transform.position);
                 GetComponent<AudioSource>().PlayOneShot(soundManager.hitWater);
@@ -313,6 +315,7 @@ public class PlayerController : StarterAssets.ThirdPersonController
         // hit player exit
         if (other.gameObject.tag == "PlayerExit")
         {
+            GameController.gameController.gameOver = true;
             //AudioSource.PlayClipAtPoint(soundManager.Meow, transform.position);
             GetComponent<AudioSource>().PlayOneShot(soundManager.Meow);
             GameController.gameController.levelController.OnLevelComplete();

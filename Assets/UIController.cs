@@ -13,6 +13,8 @@ public class UIController : MonoBehaviour
     public Image CardRed;
     public Image CardBlue;
 
+    public GameObject[] Pages;
+
      
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,11 @@ public class UIController : MonoBehaviour
     public void UpdateEndScreenResult(int value, int max)
     {
         EndScreenResult.text = value.ToString() + "/" + max;
+
+        for (int i = 0; i < value; i++)
+        {
+            Pages[i].SetActive(true);
+        }
     }
 
     public void UpdateNumberOfPages(int value, int max)
