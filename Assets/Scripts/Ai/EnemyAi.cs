@@ -273,8 +273,11 @@ public class EnemyAi : MonoBehaviour
 
         }
 
-        // escort target
-        Vector3 targetPoint = GameController.gameController.levelController.ExitPoints[0].transform.position;
+        // escort target to nearest bin
+        //Vector3 targetPoint = GameController.gameController.levelController.ExitPoints[0].transform.position;
+        Vector3 targetPoint = GameController.gameController.levelController.NearestBin(transform).position;
+        targetPoint.y = transform.position.y;
+
         nav.SetDestination(targetPoint);
 
         GameObject.Find("Player").GetComponent<PlayerController>().OnEscort(this.transform);
@@ -282,13 +285,14 @@ public class EnemyAi : MonoBehaviour
 
         if(behaviours.InPosition(targetPoint,1f))
         {
+            anim.SetBool("carry", false);
             //PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
             GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
             //GameObject.Find("Player").GetComponent<PlayerController>().StopEscort();
             GameObject.Find("Player").GetComponent<PlayerController>().ThrownOut();
             GameController.gameController.gameOver = true;
             Invoke(nameof(RespawnPlayer),1f);
-            //currentState = State.Patrol;
+            
         }
 
     }

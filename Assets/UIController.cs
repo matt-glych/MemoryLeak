@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    public Slider StruggleSlider;
     public Image PageIcon;
     public Text PagesCount;
     public GameObject EndScreen;
@@ -26,7 +27,21 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameController.gameController.Player.GetComponent<PlayerController>().beingEscorted)
+        {
+            if(StruggleSlider.gameObject.activeSelf == false)
+                StruggleSlider.gameObject.SetActive(true);
+            StruggleSlider.maxValue = GameController.gameController.Player.GetComponent<PlayerController>().struggleDifficulty;
+            StruggleSlider.value = GameController.gameController.Player.GetComponent<PlayerController>().struggleValue;
+        }
+        else
+        {
+            if(StruggleSlider.value != 0)
+            {
+                StruggleSlider.gameObject.SetActive(false);
+                StruggleSlider.value = 0;
+            }
+        }
     }
 
 

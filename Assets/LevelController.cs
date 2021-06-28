@@ -29,6 +29,17 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         canCollectPage = true;
+        //ExitPoints = GameObject.Find("CatBins").GetComponentsInChildren<Transform>();
+        List<Transform> exits = new List<Transform>();
+
+        foreach (var item in GameObject.Find("CatBins").GetComponentsInChildren<Transform>())
+        {
+            if(item.GetComponent<CatBin>()!=null)
+            {
+                exits.Add(item);
+            }
+        }
+        ExitPoints = exits.ToArray();
     }
 
     // Update is called once per frame
@@ -48,6 +59,20 @@ public class LevelController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Transform NearestBin(Transform agent)
+    {
+        var closestExit = ExitPoints[0];
+
+        var dist = Vector3.Distance(agent.position, ExitPoints[0].transform.position);
+        for (var i = 0; i < ExitPoints.Length; i++) {
+            var tempDist = Vector3.Distance(transform.position, ExitPoints[i].transform.position);
+            if (tempDist < dist) {
+            closestExit = ExitPoints[i];
+            }
+        }
+        return closestExit;
     }
 
     // collect dropped page

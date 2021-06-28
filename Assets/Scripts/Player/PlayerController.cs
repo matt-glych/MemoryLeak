@@ -77,6 +77,7 @@ public class PlayerController : StarterAssets.ThirdPersonController
 
     public override void Start()
     {
+        this.transform.Find("CatCharacterV2").gameObject.SetActive(true);
         base.Start();
         canMove = true;
         keycard = "0";
@@ -107,8 +108,9 @@ public class PlayerController : StarterAssets.ThirdPersonController
                 struggleValue -= 0.2f * Time.deltaTime;
             }
 
-            if(struggleValue >= struggleDifficulty+1)
+            if(struggleValue >= struggleDifficulty)
             {
+                struggleValue = struggleDifficulty;
                 bouncerAgent.GetComponent<EnemyAi>().BreakEscort();
                 struggleValue = 0;
             }
@@ -152,6 +154,7 @@ public class PlayerController : StarterAssets.ThirdPersonController
             //AudioSource.PlayClipAtPoint(soundManager.GameOver, transform.position);
             GetComponent<AudioSource>().PlayOneShot(soundManager.GameOver);
             thrownOut = true;
+            this.transform.Find("CatCharacterV2").gameObject.SetActive(false);
         }
         Vector3 pos = bouncerAgent.position - bouncerAgent.forward * 1.25f;
 
