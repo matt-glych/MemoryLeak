@@ -67,10 +67,12 @@
 
             var dist = Vector3.Distance(agent.position, closestExit.position);
 
-            for (var i = 1; i < ExitPoints.Length; i++) {
+            for (var i = 0; i < ExitPoints.Length; i++) {
+                
                 var tempDist = Vector3.Distance(agent.position, ExitPoints[i].transform.position);
+                
                 if (tempDist < dist) {
-                closestExit = ExitPoints[i];
+                    closestExit = ExitPoints[i];
                 }
             }
             return closestExit;
