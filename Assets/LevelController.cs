@@ -100,6 +100,7 @@ public class LevelController : MonoBehaviour
     {
         if(pagesCollected>0)
         {
+            GetComponent<AudioSource>().PlayOneShot(GameController.gameController.soundManager.Meow);
             pagesCollected--;
             UIController.UpdateNumberOfPages(pagesCollected, totalPages);
             //canCollectPage = false;

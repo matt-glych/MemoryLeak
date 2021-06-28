@@ -95,7 +95,8 @@ public class EnemyAi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateBehaviour();
+        if(!GameController.gameController.gameOver)
+            CalculateBehaviour();
     }
 
     void CalculateBehaviour()
@@ -284,6 +285,7 @@ public class EnemyAi : MonoBehaviour
             GameObject.Find("Player").GetComponent<PlayerController>().canMove = false;
             //GameObject.Find("Player").GetComponent<PlayerController>().StopEscort();
             GameObject.Find("Player").GetComponent<PlayerController>().ThrownOut();
+            GameController.gameController.gameOver = true;
             Invoke(nameof(RespawnPlayer),1f);
             //currentState = State.Patrol;
         }

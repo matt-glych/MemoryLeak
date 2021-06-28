@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public CheckpointManager checkpointManager;
     public GameObject Player;
     public Camera cam;
+    public bool gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        gameOver = false;
     }
 
     // Update is called once per frame
