@@ -73,6 +73,7 @@
                 
                 if (tempDist < dist) {
                     closestExit = ExitPoints[i];
+                    dist = tempDist;
                 }
             }
             return closestExit;
